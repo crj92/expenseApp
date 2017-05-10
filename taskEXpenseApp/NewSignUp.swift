@@ -7,3 +7,9 @@
 //
 
 import Foundation
+import RealmSwift
+
+class NewSignUp: Object {
+    dynamic var  userId: String = ""
+    dynamic var  userPwd: String = ""
+}

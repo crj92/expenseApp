@@ -9,6 +9,9 @@
 import UIKit
 
 class UserDetailViewController: UIViewController {
+    
+    var loginViewController: LoginViewController?
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,20 +19,31 @@ class UserDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
+    
+    @IBAction func saveprofile(_ sender: Any) {
+        
+        let swVC = getLoginViewController()
+        UIView.animate(withDuration: 1, animations: {
+            self.navigationController!.setViewControllers([swVC], animated: true)//(swVC, animated: true)
+        }, completion: nil)
+        
+        self.view.endEditing(true)
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    //we get menuvc
+    func getLoginViewController() -> LoginViewController {
+        if loginViewController == nil {
+            let  mainStory = UIStoryboard(name: "Main", bundle: nil)
+            let loginVC = mainStory.instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
+            //            expenseListVC.navigationItem.backBarButtonItem = nil
+            loginViewController = loginVC
+            
+        }
+        return loginViewController!
     }
-    */
+
 
 }

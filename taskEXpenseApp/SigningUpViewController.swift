@@ -10,26 +10,66 @@ import UIKit
 
 class SigningUpViewController: UIViewController {
 
+    @IBOutlet weak var viewVisualEffect: UIVisualEffectView!
+    @IBOutlet weak var txtEmail: UITextView!
+    @IBOutlet weak var txtUserName: UITextView!
+    @IBOutlet weak var txtPwd: UITextView!
+    @IBOutlet weak var txtConfirmPwd: UITextView!
+    @IBOutlet weak var btnCreate: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //txtEmail.text = "Enter Email Id"
+        //txtEmail.textColor = UIColor.lightGray
+        
+        //txtPwd.text = "Enter Password"
+        //txtPwd.textColor = UIColor.lightGray
+        
+        self.viewVisualEffect.center.y += view.bounds.height
+        
+        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
+            self.viewVisualEffect.center.y -= self.view.bounds.height
+        }, completion: nil)
+        
+        
+        
+        
+        
+        
     }
-    */
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
+    
+    //func textViewDidBeginEditing(_ textView: UITextView) {
+      //  if txtEmail.textColor == UIColor.lightGray {
+        //    txtEmail.text = nil
+          //  txtEmail.textColor = UIColor.black
+        //}
+        
+        //if txtPwd.textColor == UIColor.lightGray {
+          //  txtPwd.text = nil
+            //txtPwd.textColor = UIColor.black
+        //}
+    //}
+    //func textViewDidEndEditing(_ textView: UITextView) {
+      //  if txtEmail.text.isEmpty {
+        //    txtEmail.text = "Enter Email Id"
+          //  txtEmail.textColor = UIColor.lightGray
+        //}
+        //if txtPwd.text.isEmpty {
+          //  txtPwd.text = "Enter Password"
+           // txtPwd.textColor = UIColor.lightGray
+        //}
+    //}
+
 
 }

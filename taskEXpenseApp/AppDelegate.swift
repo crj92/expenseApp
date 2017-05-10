@@ -7,14 +7,24 @@
 //
 
 import UIKit
+import RealmSwift
+//let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+//let url = DocumentsDirectory.appendingPathComponent("newExpense1.realm")
+//var realm = try! Realm(fileURL: NewExpense.url)
+
+let dbRealm = try! Realm(fileURL: NewExpense.url)
+var userLoggedName = ""
+
 
 @UIApplicationMain
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
         // Override point for customization after application launch.
         return true
     }

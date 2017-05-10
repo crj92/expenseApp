@@ -1,0 +1,168 @@
+//
+//  ViewController.swift
+//  taskEXpenseApp
+//
+//  Created by Raj Shekhar on 4/17/17.
+//  Copyright © 2017 Raj Shekhar. All rights reserved.
+//
+
+import UIKit
+import RealmSwift
+
+class ExpenseListViewController: UIViewController, UITableViewDelegate {
+
+//    @IBOutlet weak var txtAddExpense: UITextField!
+
+var results = [NewExpense]()
+var expenselists : Results<NewExpense>!
+var currentCreateAction:UIAlertAction!
+
+override func viewDidLoad() {
+super.viewDidLoad()
+tblView.dataSource = self
+tblView.delegate = self
+expenselists = readTasksAndUpdateUI()
+tblView.rowHeight = UITableViewAutomaticDimension
+tblView.estimatedRowHeight = 140
+}
+
+
+override func viewDidAppear(_ animated: Bool) {
+super.viewDidAppear(animated)
+
+NotificationCenter.default.addObserver(forName: .UIContentSizeCategoryDidChange, object: .none, queue: OperationQueue.main) { [weak self] _ in
+self?.tblView.reloadData()
+}
+}
+
+@IBOutlet weak var tblView: UITableView!
+@IBOutlet weak var lblShowExpense: UILabel!
+
+//    @IBAction func add(_ sender: Any) {
+//        if let value = txtAddExpense.text, value != ""{
+//            let newExpense = NewExpense()
+//            newExpense.moneySpent = (NumberFormatter().number(from: value)?.doubleValue)!
+//            newExpense.save()
+//            txtAddExpense.text = ""
+//            expenselists = readTasksAndUpdateUI()
+//            self.tblView.reloadData()
+//        }
+//        displayAlertToAddTaskList(updatedList: nil)
+
+//        }
+
+@IBAction func addNewExpense(_ sender: Any) {
+
+displayAlertToAddTaskList(updatedList: nil)
+
+}
+func readTasksAndUpdateUI() -> Results<NewExpense>{
+
+return   dbRealm.objects(NewExpense.self)
+//        self.tblView.setEditing(false, animated: true)
+}
+
+//alertvc
+func displayAlertToAddTaskList(updatedList: NewExpense!) {
+//        if let value = txtAddExpense.text, value != ""{
+//            let newExpense = NewExpense()
+//            newExpense.moneySpent = (NumberFormatter().number(from: value)?.doubleValue)!
+//            newExpense.save()
+//            txtAddExpense.text = ""
+//            expenselists = readTasksAndUpdateUI()
+//            self.tblView.reloadData()
+//        }// down
+
+
+
+var title = "New expense"
+var doneTitle = "Add"
+
+//        if updatedList != nil {
+//            title = "update Tasks List"
+//            doneTitle = "Update"
+//        }
+
+let alertController = UIAlertController(title: title, message: "Add expense.", preferredStyle: UIAlertControllerStyle.alert)
+let createAction = UIAlertAction(title: doneTitle, style: UIAlertActionStyle.default) { (action) -> Void in
+
+let expenseData = alertController.textFields?.first?.text
+
+//            if updatedList != nil{
+//                // update mode
+//                try! uiRealm.write{
+//                    updatedList.name = listName!
+//                    self.readTasksAndUpdateUI()
+//                }
+//            }
+//            else{
+
+//                let newExpenseList = NewExpense()
+//                newExpenseList.moneySpent = Double(expenseData!)!
+//                try! dbRealm.write{
+//
+//                    dbRealm.add(newExpenseList)
+//                    self.readTasksAndUpdateUI()
+//                }
+//            }
+//            if let value = self.txtAddExpense.text, value != ""{
+let newExpense = NewExpense()
+newExpense.moneySpent = Double(expenseData!)!
+newExpense.save()
+//                self.txtAddExpense.text = ""
+self.expenselists = self.readTasksAndUpdateUI()
+self.tblView.reloadData()
+//            }
+
+print(expenseData ?? "")
+}
+
+alertController.addAction(createAction)
+createAction.isEnabled = false
+self.currentCreateAction = createAction
+
+alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+
+alertController.addTextField { (textField) -> Void in
+textField.placeholder = "Task List Name"
+textField.addTarget(self, action: #selector(ExpenseListViewController.expenseFieldDidChange(textField:)), for: UIControlEvents.editingChanged)
+//            if updatedList != nil{
+//                textField.text = updatedList.name
+//            }
+}
+
+self.present(alertController, animated: true, completion: nil)
+}
+
+func expenseFieldDidChange(textField: UITextField) {
+
+self.currentCreateAction.isEnabled = (textField.text?.characters.count)! > 0
+}
+
+//segue
+override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+if let destination = segue.destination as? ExpenseDetailViewController ,
+let indexPath = tblView.indexPathForSelectedRow {
+destination.selectedExpense = expenselists[indexPath.row]
+}
+}
+}
+
+extension ExpenseListViewController: UITableViewDataSource{
+
+func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        print(getMoneySpentFromDatabase().count)
+print("count",expenselists.count)
+return expenselists.count
+}
+
+func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+let cell = tblView.dequeueReusableCell(withIdentifier: "Cell")
+let list = expenselists[indexPath.row]
+print(list)
+cell?.textLabel?.text = String(list.moneySpent)
+return cell!
+}
+
+
+}

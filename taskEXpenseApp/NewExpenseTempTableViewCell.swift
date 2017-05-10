@@ -10,6 +10,9 @@ import UIKit
 
 class NewExpenseTempTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var txtFirstItem: UITextField!
+    @IBOutlet weak var txtMoney: UITextField!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

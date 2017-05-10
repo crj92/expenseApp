@@ -9,6 +9,8 @@
 import UIKit
 
 class NewExpenseAddItemsTableViewCell: UITableViewCell {
+    @IBOutlet weak var txtItemsName: UITextField!
+    @IBOutlet weak var txtItemsValue: UITextField!
 
     override func awakeFromNib() {
         super.awakeFromNib()
