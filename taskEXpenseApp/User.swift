@@ -12,7 +12,7 @@ import RealmSwift
 class User: Object{
     dynamic var id = 0
     dynamic var userName: String = ""
-    let userExpenseList = List<NewExpense>()
+    var expenseList = List<NewExpense>()
     
     override static func primaryKey() -> String? {
         return "id"

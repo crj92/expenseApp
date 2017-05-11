@@ -15,7 +15,7 @@ class NewExpense: Object{
     
     dynamic var eventTitle: String = ""
     dynamic var totalMoneySpent: Double = Double(0.0)
-    let addList = List<NewExpenseTemp>()
+    var addList = List<NewExpenseTemp>()
     
     
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -23,21 +23,21 @@ class NewExpense: Object{
     
     
     //save to realm database
-//    func save() {
+    func save() {
 //        print("got some data",addList)
 //        eventTitle = tempList[0].titleTemp
-//        totalMoneySpent = addAllExpense()
-//        print("dir","\(NewExpense.DocumentsDirectory)")
+        totalMoneySpent = addAllExpense()
+        print("dir","\(NewExpense.DocumentsDirectory)")
 
-//        do {
-//            try dbRealm.write {
-//                dbRealm.add(self)
-//            }
-//        } catch let error as NSError {
-//            print("#########################")
-//            fatalError(error.localizedDescription)
-//        }
-//    }
+        do {
+            try dbRealm.write {
+                dbRealm.add(self)
+            }
+        } catch let error as NSError {
+            print("#########################")
+            fatalError(error.localizedDescription)
+        }
+    }
     
     func addAllExpense() -> Double{
         var sum: Double = 0.0

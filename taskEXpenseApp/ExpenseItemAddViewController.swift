@@ -7,21 +7,18 @@
 //
 
 import UIKit
-import RealmSwift
 
 class ExpenseItemAddViewController: UIViewController {
     @IBOutlet weak var txtName: UITextField!
     @IBOutlet weak var tblViewAddItem: UITableView!
+//    var count = 0
+//    let newExpenseTemp = NewExpenseTemp()
     var currentCreateActionTemp : UIAlertAction!
     var itemTemp = ""
     var expenseDataTemp = ""
-    var newExpenseTempList = List<NewExpenseTemp>()
-    var newExpenseList = List<NewExpense>()
-    var anotherTempObj: NewExpenseTemp?
+    var newExpenseTempList = [NewExpenseTemp]()//List<NewExpenseTemp>()
+    let newExpense = NewExpense()
     let userLoggedIn = User()
-
-//    let newExpense = NewExpense()
-    //cheking push on working on sub branch
 
     
     
@@ -43,43 +40,39 @@ class ExpenseItemAddViewController: UIViewController {
     }
     
     @IBAction func saveData(_ sender: Any) {
-//        let userLoggedIn = User()
         
-        let newExpense = NewExpense()
+        //going back to prev screen when nevigation controller is in play
 
         newExpense.eventTitle = txtName.text!
-//        newExpense.save()
-        newExpense.addList.append(anotherTempObj!)
-
-        newExpense.totalMoneySpent = newExpense.addAllExpense()
-
-//        newExpenseTempList.removeAll()
-//        print(newExpenseTempList.count)
+        newExpense.save()
+        newExpenseTempList.removeAll()
+        print(newExpenseTempList.count)
+//        userLoggedName = "Shyam"
+//        userLoggedIn.userName = userLoggedName
+//        userLoggedIn.expenseList.append(newExpense)
+//        userLoggedIn.saveUserData()
         //chk if user is already der then update or create a new one
         userLoggedIn.userName = userLoggedName
-        
-//        userLoggedIn.userExpenseList.append(newExpense)//
         let allUser = dbRealm.objects(User.self)
         let theUser = dbRealm.objects(User.self).filter("userName == %@", userLoggedIn.userName)
-        print("the user",theUser.first?.userExpenseList ?? [])
+        print("the user",theUser)
         print("the user count", theUser.count)
         if theUser.count >= 1{
             let sameId = theUser.first?.id
-//            let someDogs = realm.objects(Dog.self).filter("name contains 'Fido'")
-//            jim.dogs.append(objectsIn: someDogs)
-//            jim.dogs.append(rex)
-            let expense = dbRealm.objects(NewExpense.self)//.filter("userExpenseList contains %@", theUser.first?.userExpenseList ?? [] )
-            print("------------",expense)
-           userLoggedIn.userExpenseList.append((theUser.first?.userExpenseList.first)!)
-           userLoggedIn.userExpenseList.append(newExpense)
+            userLoggedIn.expenseList.append(newExpense)
             userLoggedIn.updateUserData(sameId!)//check if we can remve forced
             
         }else{
             let lastId = allUser.last?.id ?? 0
-//            userLoggedIn.userName = userLoggedName
-            userLoggedIn.userExpenseList.append(newExpense)
+
+//            userLoggedIn.id += 1
+            userLoggedIn.userName = userLoggedName
+            userLoggedIn.expenseList.append(newExpense)
             userLoggedIn.saveUserData(lastId)
         }
+
+
+        
         navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
         
@@ -106,8 +99,10 @@ class ExpenseItemAddViewController: UIViewController {
             self.itemTemp = (alertController.textFields?.first?.text)!
             self.expenseDataTemp = (alertController.textFields?[1].text)!
             
+            
+            
             let newExpenseTemp = NewExpenseTemp()
-    
+            
             newExpenseTemp.itemNameTemp = self.itemTemp
             newExpenseTemp.moneySpentTemp = Double(self.expenseDataTemp)!
             self.newExpenseTempList.append(newExpenseTemp)
@@ -120,11 +115,7 @@ class ExpenseItemAddViewController: UIViewController {
             
 //            print(self.expenseDataTemp )
 //            addTempObject in array
-            
-            
-            //to create local
-//            self.newExpense.addList.append(newExpenseTemp)
-            self.anotherTempObj = newExpenseTemp
+            self.newExpense.addList.append(newExpenseTemp)
 
             print(self.newExpenseTempList.count)
         }
