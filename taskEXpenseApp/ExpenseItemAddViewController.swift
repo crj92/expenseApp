@@ -69,6 +69,7 @@ class ExpenseItemAddViewController: UIViewController {
 //            jim.dogs.append(rex)
             let expense = dbRealm.objects(NewExpense.self)//.filter("userExpenseList contains %@", theUser.first?.userExpenseList ?? [] )
             print("------------",expense)
+            //here is the changes in master
            userLoggedIn.userExpenseList.append((theUser.first?.userExpenseList.first)!)
            userLoggedIn.userExpenseList.append(newExpense)
             userLoggedIn.updateUserData(sameId!)//check if we can remve forced
