@@ -11,9 +11,10 @@ import RealmSwift
 //let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
 //let url = DocumentsDirectory.appendingPathComponent("newExpense1.realm")
 //var realm = try! Realm(fileURL: NewExpense.url)
-
+let newSignUpGlobal = NewSignUp()
 let dbRealm = try! Realm(fileURL: NewExpense.url)
-var userLoggedName = ""
+var userLoggedId = ""
+
 
 
 @UIApplicationMain

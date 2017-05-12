@@ -11,11 +11,12 @@ import UIKit
 class SigningUpViewController: UIViewController {
 
     @IBOutlet weak var viewVisualEffect: UIVisualEffectView!
-    @IBOutlet weak var txtEmail: UITextView!
+    @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtUserName: UITextView!
-    @IBOutlet weak var txtPwd: UITextView!
-    @IBOutlet weak var txtConfirmPwd: UITextView!
+    @IBOutlet weak var txtPwd: UITextField!
+    @IBOutlet weak var txtConfirmPwd: UITextField!
     @IBOutlet weak var btnCreate: UIButton!
+    
     
     
     override func viewDidLoad() {
@@ -24,52 +25,25 @@ class SigningUpViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        //txtEmail.text = "Enter Email Id"
-        //txtEmail.textColor = UIColor.lightGray
-        
-        //txtPwd.text = "Enter Password"
-        //txtPwd.textColor = UIColor.lightGray
+
         
         self.viewVisualEffect.center.y += view.bounds.height
         
         UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
             self.viewVisualEffect.center.y -= self.view.bounds.height
-        }, completion: nil)
-        
-        
-        
-        
-        
-        
+        }, completion: nil)   
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
     }
     
-    
-    //func textViewDidBeginEditing(_ textView: UITextView) {
-      //  if txtEmail.textColor == UIColor.lightGray {
-        //    txtEmail.text = nil
-          //  txtEmail.textColor = UIColor.black
-        //}
-        
-        //if txtPwd.textColor == UIColor.lightGray {
-          //  txtPwd.text = nil
-            //txtPwd.textColor = UIColor.black
-        //}
-    //}
-    //func textViewDidEndEditing(_ textView: UITextView) {
-      //  if txtEmail.text.isEmpty {
-        //    txtEmail.text = "Enter Email Id"
-          //  txtEmail.textColor = UIColor.lightGray
-        //}
-        //if txtPwd.text.isEmpty {
-          //  txtPwd.text = "Enter Password"
-           // txtPwd.textColor = UIColor.lightGray
-        //}
-    //}
+    //here give every thing to signup model class and same object be shared with seave personal infor vc den additional info and en back to whole model class
+    @IBAction func createAccount(_ sender: Any) {
+        newSignUpGlobal.emailId = txtEmail.text!
+        newSignUpGlobal.idPwd = txtPwd.text!
+    }
 
 
 }

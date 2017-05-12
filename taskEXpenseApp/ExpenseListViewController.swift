@@ -16,20 +16,18 @@ class ExpenseListViewController: UIViewController, UITableViewDelegate {
     
     
     var results = [NewExpense]()
-    var expenselists : Results<NewExpense>!
+    var expenselists : List<NewExpense>!
     var currentCreateAction:UIAlertAction!
     var firstTime: Bool? = true
     var selectedIndexPath:IndexPath? = nil
+    let userLogged = User()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tblView.dataSource = self
-        tblView.delegate = self
-        expenselists = readTasksAndUpdateUI()
-        tblView.rowHeight = UITableViewAutomaticDimension
-        tblView.estimatedRowHeight = 140
-        navigationItem.backBarButtonItem?.tintColor = UIColor.green
-        print("dir","\(NewExpense.DocumentsDirectory)")
+        
+        
+        
         
         //reveal
         if self.revealViewController() != nil {
@@ -44,21 +42,33 @@ class ExpenseListViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         NotificationCenter.default.addObserver(forName: .UIContentSizeCategoryDidChange, object: .none, queue: OperationQueue.main) { [weak self] _ in
             self?.tblView.reloadData()
         }
     }
     override func viewWillAppear(_ animated: Bool) {
+        userLogged.userName = userLoggedId
+        expenselists = readTasksAndUpdateUI()
+        tblView.dataSource = self
+        tblView.delegate = self
+        tblView.rowHeight = UITableViewAutomaticDimension
+        tblView.estimatedRowHeight = 140
+        navigationItem.backBarButtonItem?.tintColor = UIColor.green
+        print("dir","\(NewExpense.DocumentsDirectory)")
         self.tblView.reloadData()
         //hide back button here
         navigationItem.hidesBackButton = true
 
     }
     
-    func readTasksAndUpdateUI() -> Results<NewExpense>{
-        
-        return   dbRealm.objects(NewExpense.self)
+    func readTasksAndUpdateUI() -> List<NewExpense>{
+        let theUser = dbRealm.objects(User.self).filter("userName == %@", userLogged.userName)
+        for eachExpense in theUser{
+            userLogged.userExpenseList.append(objectsIn: eachExpense.userExpenseList)
+        }
+        print("------------",userLogged.userExpenseList)
+        return   userLogged.userExpenseList
         //        self.tblView.setEditing(false, animated: true)
     }
     //segue

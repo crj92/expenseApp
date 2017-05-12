@@ -12,6 +12,8 @@ class UserDetailViewController: UIViewController {
     
     var loginViewController: LoginViewController?
 
+    @IBOutlet weak var txtFullName: UITextField!
+    @IBOutlet weak var txtPhoneNumber: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +25,10 @@ class UserDetailViewController: UIViewController {
     
     @IBAction func saveprofile(_ sender: Any) {
         
+        newSignUpGlobal.fullName = txtFullName.text!
+        newSignUpGlobal.phoneNumber = Int(txtPhoneNumber.text!)!
+        newSignUpGlobal.saveNewSignUpData()
+        
         let swVC = getLoginViewController()
         UIView.animate(withDuration: 1, animations: {
             self.navigationController!.setViewControllers([swVC], animated: true)//(swVC, animated: true)
@@ -33,7 +39,7 @@ class UserDetailViewController: UIViewController {
     
 
     
-    //we get menuvc
+    //we get loginvc
     func getLoginViewController() -> LoginViewController {
         if loginViewController == nil {
             let  mainStory = UIStoryboard(name: "Main", bundle: nil)

@@ -15,6 +15,9 @@ class LoginViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var btnSignIn: UIButton!
     @IBOutlet weak var btnSignUp: UIButton!
     
+    var currentCreateActionTemp : UIAlertAction!
+    var count = 0
+    
     
 //    var expenseListViewController: ExpenseListViewController?
     var swViewController: SWRevealViewController?
@@ -22,10 +25,12 @@ class LoginViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("dir","\(NewExpense.DocumentsDirectory)")
+
         
         self.hideKeyboardWhenTappedAround()
         
-        //push textfields up keybord comes
+        //push textfields' view up keybord comes
         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
@@ -79,33 +84,70 @@ class LoginViewController: UIViewController, UITextViewDelegate {
         //        }, completion: nil)
         
         
-        //changed to menu
+        //changed to overall content view
 //        let expenseListVC = getExpenseListViewController()
 //        UIView.animate(withDuration: 1, animations: {
 //            self.navigationController!.pushViewController(expenseListVC, animated: true)
 //        }, completion: nil)
+        userLoggedId = txtUserId.text
+
         
-        let swVC = getSWViewController()
-        UIView.animate(withDuration: 1, animations: {
-            self.navigationController!.setViewControllers([swVC], animated: true)//(swVC, animated: true)
-        }, completion: nil)
-        
-        userLoggedName = txtUserId.text
-        
-        self.view.endEditing(true)
+        if isUserAvailable(){
+            let swVC = getSWViewController()
+            UIView.animate(withDuration: 1, animations: {
+                self.navigationController!.setViewControllers([swVC], animated: true)//(swVC, animated: true)
+            }, completion: nil)
+            self.view.endEditing(true)
+            
+        }else if (count == 1){
+            let alert = UIAlertController(title: "User not Found", message: "New User? Please Sign Up", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+
+        }else if (count == 3){
+            let alert = UIAlertController(title: "Incorrect User Id or Password", message: "Please enter correct Username or Password", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            
+        }
         
         
         
         
     }
     
+    func isUserAvailable() -> Bool{
+        let userTryingToLogin = dbRealm.objects(NewSignUp.self).filter("emailId == %@", userLoggedId)
+        print("userLoggedName validate",userLoggedId)
+        //            userLoggedIn.userExpenseList.append((theUser.first?.userExpenseList.first)!)
+        var isUserId = ""
+        var isUserPasswordMatch = ""
+
+        isUserId = userTryingToLogin.first?.emailId ?? ""
+        isUserPasswordMatch = userTryingToLogin.first?.idPwd ?? ""
+        
+        print("isUserNameAvailable",isUserId)
+        
+        if isUserId == ""{
+            count = 1
+            return false
+        }
+        else if ((isUserId != "") && (isUserPasswordMatch == txtUserPwd.text!)) {
+            count = 2
+            return true
+        }else{
+            count = 3
+            return false
+        }
+    }
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if txtUserId.textColor == UIColor.lightGray {
+        if ((txtUserId.textColor == UIColor.lightGray) && (textView == txtUserId)) {
             txtUserId.text = nil
             txtUserId.textColor = UIColor.black
             
         }
-        if txtUserPwd.textColor == UIColor.lightGray {
+        if (txtUserPwd.textColor == UIColor.lightGray && (textView == txtUserPwd)){
             txtUserPwd.text = nil
             txtUserPwd.textColor = UIColor.black
             

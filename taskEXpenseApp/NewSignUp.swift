@@ -10,6 +10,20 @@ import Foundation
 import RealmSwift
 
 class NewSignUp: Object {
-    dynamic var  userId: String = ""
-    dynamic var  userPwd: String = ""
+    dynamic var  emailId: String = ""
+    dynamic var  idPwd: String = ""
+    dynamic var  fullName: String = ""
+    dynamic var  phoneNumber: Int = 0
+    
+    //save to realm database
+        func saveNewSignUpData() {
+            do {
+                try dbRealm.write {
+                    dbRealm.add(self)
+                }
+            } catch let error as NSError {
+                print("#########################")
+                fatalError(error.localizedDescription)
+            }
+        }
 }

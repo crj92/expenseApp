@@ -19,12 +19,8 @@ class ExpenseItemAddViewController: UIViewController {
     var newExpenseList = List<NewExpense>()
     var anotherTempObj: NewExpenseTemp?
     let userLoggedIn = User()
-
-//    let newExpense = NewExpense()
-
+    let newExpense = NewExpense()//trying again
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,51 +29,42 @@ class ExpenseItemAddViewController: UIViewController {
         
         tblViewAddItem.rowHeight = UITableViewAutomaticDimension
         tblViewAddItem.estimatedRowHeight = 140
-
-        // Do any additional setup after loading the view.
     }
+    
     
     @IBAction func addItems(_ sender: Any) {
         displayAlertToAddItemListTemp()
     }
     
+    
     @IBAction func saveData(_ sender: Any) {
-//        let userLoggedIn = User()
-        
-        let newExpense = NewExpense()
-
+//        let newExpense = NewExpense()// global this helps to persist temp into expense
         newExpense.eventTitle = txtName.text!
-//        newExpense.save()
-        newExpense.addList.append(anotherTempObj!)
-
+//        newExpense.addList.append(anotherTempObj!)
         newExpense.totalMoneySpent = newExpense.addAllExpense()
-
-//        newExpenseTempList.removeAll()
-//        print(newExpenseTempList.count)
-        //chk if user is already der then update or create a new one
-        userLoggedIn.userName = userLoggedName
         
-//        userLoggedIn.userExpenseList.append(newExpense)//
+        //chk if user is already der then update or create a new one
+        userLoggedIn.userName = userLoggedId
+        
         let allUser = dbRealm.objects(User.self)
         let theUser = dbRealm.objects(User.self).filter("userName == %@", userLoggedIn.userName)
-        print("the user",theUser.first?.userExpenseList ?? [])
-        print("the user count", theUser.count)
+        
+//        print("the user",theUser.first?.userExpenseList ?? [])
+//        print("the user count", theUser.count)
         if theUser.count >= 1{
             let sameId = theUser.first?.id
-//            let someDogs = realm.objects(Dog.self).filter("name contains 'Fido'")
-//            jim.dogs.append(objectsIn: someDogs)
-//            jim.dogs.append(rex)
-            let expense = dbRealm.objects(NewExpense.self)//.filter("userExpenseList contains %@", theUser.first?.userExpenseList ?? [] )
-            print("------------",expense)
-            //here is the changes in master
-            //one more change in master
-           userLoggedIn.userExpenseList.append((theUser.first?.userExpenseList.first)!)
-           userLoggedIn.userExpenseList.append(newExpense)
+//            let expense = dbRealm.objects(NewExpense.self)
+//            print("------------",expense)
+            for eachExpense in theUser{
+                userLoggedIn.userExpenseList.append(objectsIn: eachExpense.userExpenseList)
+            }
+            print("------------",userLoggedIn.userExpenseList)
+//            userLoggedIn.userExpenseList.append((theUser.first?.userExpenseList.first)!)
+            userLoggedIn.userExpenseList.append(newExpense)
             userLoggedIn.updateUserData(sameId!)//check if we can remve forced
             
         }else{
             let lastId = allUser.last?.id ?? 0
-//            userLoggedIn.userName = userLoggedName
             userLoggedIn.userExpenseList.append(newExpense)
             userLoggedIn.saveUserData(lastId)
         }
@@ -89,8 +76,8 @@ class ExpenseItemAddViewController: UIViewController {
         super.viewDidAppear(animated)
         
         NotificationCenter.default.addObserver(forName: .UIContentSizeCategoryDidChange, object: .none, queue: OperationQueue.main) { [weak self] _ in
-        self?.tblViewAddItem.reloadData()
-//            self?.newExpenseTemp.removeSaveTemp()
+            self?.tblViewAddItem.reloadData()
+            //            self?.newExpenseTemp.removeSaveTemp()
             
         }
     }
@@ -108,25 +95,24 @@ class ExpenseItemAddViewController: UIViewController {
             self.expenseDataTemp = (alertController.textFields?[1].text)!
             
             let newExpenseTemp = NewExpenseTemp()
-    
+            
             newExpenseTemp.itemNameTemp = self.itemTemp
             newExpenseTemp.moneySpentTemp = Double(self.expenseDataTemp)!
             self.newExpenseTempList.append(newExpenseTemp)
-//            self.newExpenseTemp.saveTemp()
+            //            self.newExpenseTemp.saveTemp()
             //                self.txtAddExpense.text = ""
-//            self.expenselistsTemp = self.readTasksAndUpdateUITemp()
+            //            self.expenselistsTemp = self.readTasksAndUpdateUITemp()
             
             self.tblViewAddItem.reloadData()
             //            }
             
-//            print(self.expenseDataTemp )
-//            addTempObject in array
+            //            print(self.expenseDataTemp )
+            //            addTempObject in array
             
             
-            //to create local
-//            self.newExpense.addList.append(newExpenseTemp)
+            self.newExpense.addList.append(newExpenseTemp)// cause temp was overiting previous value so
             self.anotherTempObj = newExpenseTemp
-
+            
             print(self.newExpenseTempList.count)
         }
         
@@ -154,7 +140,7 @@ class ExpenseItemAddViewController: UIViewController {
         self.currentCreateActionTemp.isEnabled = (textField.text?.characters.count)! > 0
     }
     
-
+    
 }
 
 extension ExpenseItemAddViewController: UITableViewDelegate{
