@@ -40,6 +40,7 @@ class UserDetailViewController: UIViewController {
 
     
     //we get loginvc
+    //hi
     func getLoginViewController() -> LoginViewController {
         if loginViewController == nil {
             let  mainStory = UIStoryboard(name: "Main", bundle: nil)
