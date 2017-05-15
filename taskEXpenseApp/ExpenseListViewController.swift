@@ -15,14 +15,14 @@ class ExpenseListViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var tblView: UITableView!
     
     
-    var results = [NewExpense]()
-    var expenselists : List<NewExpense>!
+//    var results = [NewExpense]()
+    var expenselists : List<NewExpense>?
     var currentCreateAction:UIAlertAction!
     var firstTime: Bool? = true
     var selectedIndexPath:IndexPath? = nil
     let userLogged = User()
 
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,7 +49,7 @@ class ExpenseListViewController: UIViewController, UITableViewDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         userLogged.userName = userLoggedId
-        expenselists = readTasksAndUpdateUI()
+        expenselists = readTasksAndUpdateUI("", "")
         tblView.dataSource = self
         tblView.delegate = self
         tblView.rowHeight = UITableViewAutomaticDimension
@@ -62,12 +62,32 @@ class ExpenseListViewController: UIViewController, UITableViewDelegate {
 
     }
     
-    func readTasksAndUpdateUI() -> List<NewExpense>{
-        let theUser = dbRealm.objects(User.self).filter("userName == %@", userLogged.userName)
-        for eachExpense in theUser{
-            userLogged.userExpenseList.append(objectsIn: eachExpense.userExpenseList)
+    @IBAction func filterExpense(_ sender: Any) {
+        expenselists = readTasksAndUpdateUI("2017-05-15","2017-05-18")
+    }
+    
+    @IBAction func clearFilterResult(_ sender: Any) {
+        expenselists = readTasksAndUpdateUI("","")
+
+    }
+    
+    func readTasksAndUpdateUI(_ firstDate: String, _ secondDate: String) -> List<NewExpense>{
+        if expenselists?.count != 0{
+            expenselists?.removeAll()
         }
-        print("------------",userLogged.userExpenseList)
+        let theUser = dbRealm.objects(User.self).filter("userName == %@", userLogged.userName)
+        if(firstDate == "" || secondDate == ""){
+            for eachExpense in theUser{
+                userLogged.userExpenseList.append(objectsIn: eachExpense.userExpenseList)
+            }
+        }else{
+            let theFilteredUserExpense = userLogged.userExpenseList.filter("dateCreated BETWEEN %@",[firstDate, secondDate] )
+            for eachExpense in theFilteredUserExpense{
+                userLogged.userExpenseList.append(eachExpense)
+            }
+        }
+        
+        print("------hey------",userLogged.userExpenseList)
         return   userLogged.userExpenseList
         //        self.tblView.setEditing(false, animated: true)
     }
@@ -75,7 +95,7 @@ class ExpenseListViewController: UIViewController, UITableViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? ExpenseDetailViewController ,
             let indexPath = tblView.indexPathForSelectedRow {
-            destination.selectedExpense = expenselists[indexPath.row]
+            destination.selectedExpense = expenselists![indexPath.row]
         }
     }
 }
@@ -83,13 +103,13 @@ class ExpenseListViewController: UIViewController, UITableViewDelegate {
 extension ExpenseListViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("count",expenselists.count)
-        return expenselists.count
+        print("count",expenselists!.count)
+        return expenselists!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tblView.dequeueReusableCell(withIdentifier: "Cell") as! NewExpenseTableViewCell
-        let list = expenselists[indexPath.row]
+        let list = expenselists![indexPath.row]
 //        print("this is list",list)
 //        cell?.textLabel?.text = String(list.moneySpent)
         
@@ -115,3 +135,5 @@ extension ExpenseListViewController: UITableViewDataSource{
         return cell
     }
 }
+// note here i have changed     var expenselists : List<NewExpense>! to     var expenselists : List<NewExpense>? beacause to chk if already expense list has some value remove it while calling readTasksAndUpdateUI(), it was duplicating already present data in expenselist table.
+

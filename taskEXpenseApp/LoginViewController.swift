@@ -54,10 +54,10 @@ class LoginViewController: UIViewController, UITextViewDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        txtUserId.text = "Enter Email"
+        txtUserId.text = "ram@"//"Enter Email"
         txtUserId.textColor = UIColor.lightGray
         
-        txtUserPwd.text = "Enter Password"
+        txtUserPwd.text = "123"//"Enter Password"
         txtUserPwd.textColor = UIColor.lightGray
         
         self.navigationController?.setNavigationBarHidden(true, animated: animated)

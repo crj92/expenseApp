@@ -1,0 +1,36 @@
+
+//extension ExpenseItemAddViewController: UIPopoverPresentationControllerDelegate{
+//    func getAddItemsPopViewController(_ sender: Any){
+//
+//        //        let addItemVC = getAddingItemsViewController()
+//        //        UIView.animate(withDuration: 1, animations: {
+//        //            self.navigationController!.setViewControllers([addItemVC], animated: true)
+//        //        }, completion: nil)
+//
+//        let  mainStory = UIStoryboard(name: "Main", bundle: nil)
+//        let addItemsVC = mainStory.instantiateViewController(withIdentifier: "addItemsVC") as! AddingItemsViewController
+////        addIncidentViewController.modalPresentationStyle = .overCurrentContext
+//        addItemsVC.modalPresentationStyle = .overFullScreen
+////        let popover = addItemsVC.popoverPresentationController!
+////        popover.delegate = self
+////        popover.permittedArrowDirections = .up
+////        popover.sourceView = sender as? UIView
+////        popover.sourceRect = (sender as AnyObject).bounds
+//        addItemsVC.preferredContentSize = CGSize(width: 300, height: 400)
+//
+//        self.present(addItemsVC, animated: true, completion: nil)
+//        //        You can size the view controller with use preferred explicit size checked or do something like
+//
+//        //        self.view.endEditing(true)
+//
+//
+//
+//    }
+//
+//    //deleget method for popup
+//    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+//        return .none
+//    }
+//
+//
+//}

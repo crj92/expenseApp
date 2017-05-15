@@ -12,14 +12,18 @@ import RealmSwift
 class ExpenseItemAddViewController: UIViewController {
     @IBOutlet weak var txtName: UITextField!
     @IBOutlet weak var tblViewAddItem: UITableView!
-    var currentCreateActionTemp : UIAlertAction!
-    var itemTemp = ""
-    var expenseDataTemp = ""
+    var itemNameTemp = ""
+    var itemMoneyTemp = ""
     var newExpenseTempList = List<NewExpenseTemp>()
     var newExpenseList = List<NewExpense>()
-    var anotherTempObj: NewExpenseTemp?
+//    var anotherTempObj: NewExpenseTemp?
     let userLoggedIn = User()
     let newExpense = NewExpense()//trying again
+//    var addingItemsViewController: AddingItemsViewController?
+//    var dayItemCreated: NSDate{
+//        return Date().currentDateTime
+//    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,18 +35,35 @@ class ExpenseItemAddViewController: UIViewController {
         tblViewAddItem.estimatedRowHeight = 140
     }
     
-    
-    @IBAction func addItems(_ sender: Any) {
-        displayAlertToAddItemListTemp()
+    override func viewWillAppear(_ animated: Bool) {
+//        displayItemListTemp()
+//        self.tblViewAddItem.reloadData()
+
     }
     
+    
+    @IBAction func addItems(_ sender: Any) {
+//        displayAlertToAddItemListTemp()
+//        getAddItemsPopViewController(sender)
+    
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? AddItemsViewController{
+            destination.expenseListTablevc = self
+        }
+    }
+
+
     
     @IBAction func saveData(_ sender: Any) {
 //        let newExpense = NewExpense()// global this helps to persist temp into expense
         newExpense.eventTitle = txtName.text!
 //        newExpense.addList.append(anotherTempObj!)
         newExpense.totalMoneySpent = newExpense.addAllExpense()
-        
+        newExpense.dateCreated = NSDate()
+        print(newExpense.dateCreated)
+//        newExpense.setTime
         //chk if user is already der then update or create a new one
         userLoggedIn.userName = userLoggedId
         
@@ -76,69 +97,59 @@ class ExpenseItemAddViewController: UIViewController {
         super.viewDidAppear(animated)
         
         NotificationCenter.default.addObserver(forName: .UIContentSizeCategoryDidChange, object: .none, queue: OperationQueue.main) { [weak self] _ in
-            self?.tblViewAddItem.reloadData()
+//            self?.tblViewAddItem.reloadData()
             //            self?.newExpenseTemp.removeSaveTemp()
             
         }
     }
     
-    //opens alert to add expense and save
-    func displayAlertToAddItemListTemp() {
-        
-        let title = "AddNewItem"
-        let doneTitle = "Add"
-        
-        let alertController = UIAlertController(title: title, message: "Add expense.", preferredStyle: UIAlertControllerStyle.alert)
-        let createAction = UIAlertAction(title: doneTitle, style: UIAlertActionStyle.default) { (action) -> Void in
-            
-            self.itemTemp = (alertController.textFields?.first?.text)!
-            self.expenseDataTemp = (alertController.textFields?[1].text)!
+    //to add expense and save
+    func displayItemListTemp() {
             
             let newExpenseTemp = NewExpenseTemp()
-            
-            newExpenseTemp.itemNameTemp = self.itemTemp
-            newExpenseTemp.moneySpentTemp = Double(self.expenseDataTemp)!
+        
+            newExpenseTemp.itemNameTemp = self.itemNameTemp
+        if (itemMoneyTemp.isEmpty == false){
+            newExpenseTemp.moneySpentTemp = Double(self.itemMoneyTemp)!
+        }else{
+            print("nothing")
+        }
+        
+        
             self.newExpenseTempList.append(newExpenseTemp)
-            //            self.newExpenseTemp.saveTemp()
-            //                self.txtAddExpense.text = ""
-            //            self.expenselistsTemp = self.readTasksAndUpdateUITemp()
-            
-            self.tblViewAddItem.reloadData()
-            //            }
-            
-            //            print(self.expenseDataTemp )
-            //            addTempObject in array
-            
-            
+        print("newExpenseTempList",newExpenseTempList)
             self.newExpense.addList.append(newExpenseTemp)// cause temp was overiting previous value so
-            self.anotherTempObj = newExpenseTemp
-            
+//            self.anotherTempObj = newExpenseTemp
+//        self.tblViewAddItem.reloadData()
+
             print(self.newExpenseTempList.count)
-        }
+
         
-        alertController.addAction(createAction)
-        createAction.isEnabled = false
-        self.currentCreateActionTemp = createAction
         
-        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
-        
-        alertController.addTextField { (textField) -> Void in
-            textField.placeholder = "Enter Item"
-            textField.addTarget(self, action: #selector(ExpenseItemAddViewController.expenseFieldDidChangeTemp(textField:)), for: UIControlEvents.editingChanged)
-        }
-        alertController.addTextField { (textField) -> Void in
-            textField.placeholder = "Enter expense"
-            textField.addTarget(self, action: #selector(ExpenseItemAddViewController.expenseFieldDidChangeTemp(textField:)), for: UIControlEvents.editingChanged)
-            
-        }
-        
-        self.present(alertController, animated: true, completion: nil)
+
     }
     
-    func expenseFieldDidChangeTemp(textField: UITextField) {
-        
-        self.currentCreateActionTemp.isEnabled = (textField.text?.characters.count)! > 0
-    }
+//    func getAddingItemsViewController() -> AddingItemsViewController {
+//        if addingItemsViewController == nil {
+////            let  mainStory = UIStoryboard(name: "Main", bundle: nil)
+////            let addItemsVC = mainStory.instantiateViewController(withIdentifier: "addItemsVC") as! AddingItemsViewController
+//            //            expenseListVC.navigationItem.backBarButtonItem = nil
+////            addingItemsViewController = addItemsVC
+//            
+////            let storyboard : UIStoryboard = UIStoryboard(name: "THE_NAME_OF_YOUR_STORYBOARD", bundle: nil)
+////            let vc = storyboard.instantiateViewController(withIdentifier: "THE_IDENTIFIER_OF_YOUR_VIEWCONTROLLER")
+//            
+//            
+//        }
+//        return addingItemsViewController!
+//    }
+
+    
+    
+//    func expenseFieldDidChangeTemp(textField: UITextField) {
+//        
+//        self.currentCreateActionTemp.isEnabled = (textField.text?.characters.count)! > 0
+//    }
     
     
 }
@@ -161,3 +172,19 @@ extension ExpenseItemAddViewController: UITableViewDataSource{
         return cell
     }
 }
+
+
+//extension NSDate {
+//    static let iso8601DateFormatter: DateFormatter = {
+//        let formatter = DateFormatter() //DateFormatter()
+//        formatter.calendar = Calendar(identifier: .iso8601)
+//        formatter.locale = Locale(identifier: "en_US_POSIX")
+//        formatter.timeZone = TimeZone.current
+//        formatter.dateFormat = "yyyy-MM-dd"
+//        return formatter
+//    }()
+//    var currentDateTime: String {
+//        return NSDate.iso8601DateFormatter(from: self)
+//    }
+//}
+
