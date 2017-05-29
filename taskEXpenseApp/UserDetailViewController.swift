@@ -11,7 +11,8 @@ import UIKit
 class UserDetailViewController: UIViewController {
     
     var loginViewController: LoginViewController?
-
+    var signUpVC: SigningUpViewController?
+    var newSignUp = NewSignUp()
     @IBOutlet weak var txtFullName: UITextField!
     @IBOutlet weak var txtPhoneNumber: UITextField!
 
@@ -24,17 +25,20 @@ class UserDetailViewController: UIViewController {
 
     
     @IBAction func saveprofile(_ sender: Any) {
-        
-        newSignUpGlobal.fullName = txtFullName.text!
-        newSignUpGlobal.phoneNumber = Int(txtPhoneNumber.text!)!
-        newSignUpGlobal.saveNewSignUpData()
+        newSignUp.emailId = (signUpVC?.emailId)!
+        newSignUp.idPwd = (signUpVC?.idPwd)!
+        newSignUp.fullName = txtFullName.text!
+        newSignUp.phoneNumber = Int(txtPhoneNumber.text!)!
+        newSignUp.saveNewSignUpData()
         
         let swVC = getLoginViewController()
         UIView.animate(withDuration: 1, animations: {
             self.navigationController!.setViewControllers([swVC], animated: true)//(swVC, animated: true)
         }, completion: nil)
         
-        self.view.endEditing(true)
+//        self.view.endEditing(true)
+        navigationController?.popViewController(animated: true)// to remove vc from nav set
+
     }
     
 

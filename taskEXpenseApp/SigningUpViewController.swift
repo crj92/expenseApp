@@ -17,6 +17,9 @@ class SigningUpViewController: UIViewController {
     @IBOutlet weak var txtConfirmPwd: UITextField!
     @IBOutlet weak var btnCreate: UIButton!
     
+    var emailId = ""
+    var idPwd = ""
+    
     
     
     override func viewDidLoad() {
@@ -41,8 +44,16 @@ class SigningUpViewController: UIViewController {
     
     //here give every thing to signup model class and same object be shared with seave personal infor vc den additional info and en back to whole model class
     @IBAction func createAccount(_ sender: Any) {
-        newSignUpGlobal.emailId = txtEmail.text!
-        newSignUpGlobal.idPwd = txtPwd.text!
+//        newSignUpGlobal.emailId = txtEmail.text!
+//        newSignUpGlobal.idPwd = txtPwd.text!
+        self.emailId = txtEmail.text!
+        self.idPwd = txtPwd.text!
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? UserDetailViewController{
+            destination.signUpVC = self
+        }
     }
 
 

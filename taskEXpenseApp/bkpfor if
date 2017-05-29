@@ -1,0 +1,31 @@
+//
+//  bkpfor if.swift
+//  taskEXpenseApp
+//
+//  Created by Raj Shekhar on 5/23/17.
+//  Copyright © 2017 Raj Shekhar. All rights reserved.
+//
+
+import Foundation
+
+
+if containsGrouplist?.count != 0{
+    print(dbRealm.isInWriteTransaction)
+    //            if (dbRealm.isInWriteTransaction == false){
+    //                do{
+    //                try dbRealm.write {
+    //                    containsGrouplist?.removeAll()
+    //                }
+    //                }
+    //                catch let error as NSError {
+    //                    print("#########################")
+    //                    fatalError(error.localizedDescription)
+    //                }
+    //
+    //            }else{
+    //                containsGrouplist?.removeAll()
+    //            }
+    //            dbRealm.cancelWrite()
+    containsGrouplist?.removeAll()
+    
+}

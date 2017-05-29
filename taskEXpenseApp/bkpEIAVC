@@ -1,0 +1,10 @@
+
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//
+//        NotificationCenter.default.addObserver(forName: .UIContentSizeCategoryDidChange, object: .none, queue: OperationQueue.main) { [weak self] _ in
+////            self?.tblViewAddItem.reloadData()
+//            //            self?.newExpenseTemp.removeSaveTemp()
+//
+//        }
+//    }

@@ -1,0 +1,46 @@
+func deleteGroup(_ groupName: String) -> List<PrivateGroup>{
+//        if containsGrouplist?.count != 0{
+//            containsGrouplist?.removeAll()
+//        }
+let theUserResult = dbRealm.objects(User.self).filter("userName == %@", userHasLogged.userName)
+let sameId = theUserResult.first?.id
+
+for theUser in theUserResult{
+userHasLogged.userExpenseList.append(objectsIn: theUser.userExpenseList)
+
+for eachGroup in theUser.groupList//("dateCreated == \(Date())")
+{
+if(eachGroup.groupName != groupName){//does not append that group
+userHasLogged.groupList.append(eachGroup)
+}
+else{
+if (dbRealm.isInWriteTransaction == false){
+do{
+try dbRealm.write {
+//                                            containsGrouplist?.removeAll()
+print("this group is gone",eachGroup.groupName)
+
+dbRealm.delete(eachGroup)
+
+}
+}
+catch let error as NSError {
+print("#########################")
+fatalError(error.localizedDescription)
+}
+
+}else{
+//                                    containsGrouplist?.removeAll()
+}
+
+//                                dbRealm.delete(eachGroup)
+
+}
+}
+}
+userHasLogged.updateUserData(sameId!)
+
+
+return   userHasLogged.groupList//why 4
+//        note that this is deleting group from that specific user but not from universal group model, no prob for now
+}

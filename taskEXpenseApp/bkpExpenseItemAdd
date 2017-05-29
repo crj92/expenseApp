@@ -1,0 +1,50 @@
+
+//when slide be called
+//    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle{
+//
+//        if(context == "editedExpense"){
+//            return .delete
+//        }else{
+//            return .none
+//        }
+//
+//    }
+//
+
+
+//    //delete slide
+func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+let tempItemGotDeleted = newTempList[indexPath.row]
+print("some",tempItemGotDeleted)
+if editingStyle == .delete {
+do{
+try dbRealm.write {
+
+newTempList.remove(objectAtIndex: indexPath.row)//this deleted it from db, but i want to delete it from global model
+//                    tableView.deleteRows(at: [indexPath], with: .fade)
+
+deleteSelectedTempItem(tempItemGotDeleted.itemNameTemp)
+
+}
+}
+catch let error as NSError {
+fatalError(error.localizedDescription)
+}
+
+tableView.reloadData()
+//            context = "editedExpense"/// hera pheri 1
+}
+else if editingStyle == .insert {
+// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+}
+}
+
+
+/// common
+//delete item // here direct delete from model
+func deleteSelectedTempItem(_ inputItemName: String) {
+let item = dbRealm.objects(NewExpenseTemp.self).filter("itemNameTemp == %@", inputItemName)
+dbRealm.delete(item)
+//        context = "detailExpense"// hera pheri 2
+//we want 2nd condition for count
+}

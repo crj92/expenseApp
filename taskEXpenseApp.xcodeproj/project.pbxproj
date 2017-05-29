@@ -12,10 +12,15 @@
 		3C1C67B51EB20D8A0053413A /* NewExpenseTempTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1C67B41EB20D8A0053413A /* NewExpenseTempTableViewCell.swift */; };
 		3C62E1721EBC92C3007CFF21 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C62E1711EBC92C3007CFF21 /* LoginViewController.swift */; };
 		3C62E1761EBC94CD007CFF21 /* SigningUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C62E1751EBC94CD007CFF21 /* SigningUpViewController.swift */; };
+		3C633D9B1ECEA9A2004609F8 /* PrivateGroupTemp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C633D9A1ECEA9A2004609F8 /* PrivateGroupTemp.swift */; };
 		3C6570D71EC2CB0F00EB9163 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6570D61EC2CB0F00EB9163 /* User.swift */; };
+		3C68793D1ECD545800026024 /* CreateGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C68793C1ECD545800026024 /* CreateGroupTableViewCell.swift */; };
+		3C6A20751ED4242000C4F0B9 /* bkpfor if in Sources */ = {isa = PBXBuildFile; fileRef = 3C6A20741ED4241F00C4F0B9 /* bkpfor if */; };
+		3C6A20771ED4566A00C4F0B9 /* bkp10 in Resources */ = {isa = PBXBuildFile; fileRef = 3C6A20761ED4566A00C4F0B9 /* bkp10 */; };
+		3C6C0DB51ED69C6F003AC944 /* bkpExpenseItemAdd in Resources */ = {isa = PBXBuildFile; fileRef = 3C6C0DB41ED69C6F003AC944 /* bkpExpenseItemAdd */; };
 		3C7379CF1EB9FA6F00B6A553 /* NewExpenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7379CE1EB9FA6F00B6A553 /* NewExpenseTableViewCell.swift */; };
+		3C7A62351ECF239500549952 /* GroupDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7A62341ECF239500549952 /* GroupDetailViewController.swift */; };
 		3C883FE31EAE2E3F00509B91 /* NewExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C883FE21EAE2E3F00509B91 /* NewExpense.swift */; };
-		3C9258701EC0905A001C9856 /* AddingItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C92586F1EC0905A001C9856 /* AddingItemsViewController.swift */; };
 		3C9258721EC09347001C9856 /* readme in Resources */ = {isa = PBXBuildFile; fileRef = 3C9258711EC09347001C9856 /* readme */; };
 		3C9457321EB1AF0F00CDDDF1 /* ExpenseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9457311EB1AF0F00CDDDF1 /* ExpenseDetailViewController.swift */; };
 		3C9B7D101EBB0139003E78EB /* ExpenseItemAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9B7D0F1EBB0139003E78EB /* ExpenseItemAddViewController.swift */; };
@@ -28,6 +33,14 @@
 		3C9C17D81EA4C8AA00FB7EA0 /* taskEXpenseAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9C17D71EA4C8AA00FB7EA0 /* taskEXpenseAppTests.swift */; };
 		3C9C17E31EA4C8AA00FB7EA0 /* taskEXpenseAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9C17E21EA4C8AA00FB7EA0 /* taskEXpenseAppUITests.swift */; };
 		3CAD13841EC972A90081EAE6 /* ExpenseDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD13831EC972A90081EAE6 /* ExpenseDetailTableViewCell.swift */; };
+		3CB54AA81ECC23DE000BD5B8 /* bkp search bar in Resources */ = {isa = PBXBuildFile; fileRef = 3CB54AA71ECC23DE000BD5B8 /* bkp search bar */; };
+		3CB54AAA1ECC53B2000BD5B8 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB54AA91ECC53B2000BD5B8 /* CreateGroupViewController.swift */; };
+		3CB54AAC1ECC5F5B000BD5B8 /* GroupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB54AAB1ECC5F5A000BD5B8 /* GroupListViewController.swift */; };
+		3CB54AAE1ECC6479000BD5B8 /* CheckMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB54AAD1ECC6479000BD5B8 /* CheckMemberViewController.swift */; };
+		3CB54AB01ECC68C4000BD5B8 /* PrivateGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB54AAF1ECC68C4000BD5B8 /* PrivateGroup.swift */; };
+		3CB54AB21ECC6D18000BD5B8 /* GroupListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB54AB11ECC6D18000BD5B8 /* GroupListTableViewCell.swift */; };
+		3CB8BC791ED5A1F9003C3157 /* bkpEIAVC in Resources */ = {isa = PBXBuildFile; fileRef = 3CB8BC781ED5A1F9003C3157 /* bkpEIAVC */; };
+		3CC4298C1ED2216700FD6AB6 /* GroupDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC4298B1ED2216700FD6AB6 /* GroupDetailTableViewCell.swift */; };
 		3CC56D9D1EC5C42400D98F88 /* AddItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC56D9C1EC5C42400D98F88 /* AddItemsViewController.swift */; };
 		3CE204C21EC182D7008886CD /* bkp2loginvc in Resources */ = {isa = PBXBuildFile; fileRef = 3CE204C11EC182D7008886CD /* bkp2loginvc */; };
 		3CE204C41EC18401008886CD /* LoginUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE204C31EC18401008886CD /* LoginUser.swift */; };
@@ -36,6 +49,7 @@
 		3CE204CF1EC1E100008886CD /* NewSignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE204CE1EC1E100008886CD /* NewSignUp.swift */; };
 		3CE204D11EC1EE80008886CD /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE204D01EC1EE80008886CD /* UserDetailViewController.swift */; };
 		3CE6DA4F1EC9B800004EEFF3 /* underbuttonvc in Resources */ = {isa = PBXBuildFile; fileRef = 3CE6DA4E1EC9B800004EEFF3 /* underbuttonvc */; };
+		3CE6DA511ECA36AB004EEFF3 /* DateFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE6DA501ECA36AB004EEFF3 /* DateFilterViewController.swift */; };
 		8E2F0170E4D0381EA543A815 /* Pods_taskEXpenseApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F4B36B392754721F10DB0C /* Pods_taskEXpenseApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,10 +76,15 @@
 		3C1C67B41EB20D8A0053413A /* NewExpenseTempTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewExpenseTempTableViewCell.swift; sourceTree = "<group>"; };
 		3C62E1711EBC92C3007CFF21 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3C62E1751EBC94CD007CFF21 /* SigningUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigningUpViewController.swift; sourceTree = "<group>"; };
+		3C633D9A1ECEA9A2004609F8 /* PrivateGroupTemp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateGroupTemp.swift; sourceTree = "<group>"; };
 		3C6570D61EC2CB0F00EB9163 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3C68793C1ECD545800026024 /* CreateGroupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupTableViewCell.swift; sourceTree = "<group>"; };
+		3C6A20741ED4241F00C4F0B9 /* bkpfor if */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "bkpfor if"; sourceTree = "<group>"; };
+		3C6A20761ED4566A00C4F0B9 /* bkp10 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bkp10; sourceTree = "<group>"; };
+		3C6C0DB41ED69C6F003AC944 /* bkpExpenseItemAdd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bkpExpenseItemAdd; sourceTree = "<group>"; };
 		3C7379CE1EB9FA6F00B6A553 /* NewExpenseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewExpenseTableViewCell.swift; sourceTree = "<group>"; };
+		3C7A62341ECF239500549952 /* GroupDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDetailViewController.swift; sourceTree = "<group>"; };
 		3C883FE21EAE2E3F00509B91 /* NewExpense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewExpense.swift; sourceTree = "<group>"; };
-		3C92586F1EC0905A001C9856 /* AddingItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddingItemsViewController.swift; sourceTree = "<group>"; };
 		3C9258711EC09347001C9856 /* readme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme; sourceTree = "<group>"; };
 		3C9457311EB1AF0F00CDDDF1 /* ExpenseDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailViewController.swift; sourceTree = "<group>"; };
 		3C9B7D0F1EBB0139003E78EB /* ExpenseItemAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseItemAddViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +103,14 @@
 		3C9C17E21EA4C8AA00FB7EA0 /* taskEXpenseAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = taskEXpenseAppUITests.swift; sourceTree = "<group>"; };
 		3C9C17E41EA4C8AA00FB7EA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3CAD13831EC972A90081EAE6 /* ExpenseDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailTableViewCell.swift; sourceTree = "<group>"; };
+		3CB54AA71ECC23DE000BD5B8 /* bkp search bar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "bkp search bar"; sourceTree = "<group>"; };
+		3CB54AA91ECC53B2000BD5B8 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
+		3CB54AAB1ECC5F5A000BD5B8 /* GroupListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupListViewController.swift; sourceTree = "<group>"; };
+		3CB54AAD1ECC6479000BD5B8 /* CheckMemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckMemberViewController.swift; sourceTree = "<group>"; };
+		3CB54AAF1ECC68C4000BD5B8 /* PrivateGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateGroup.swift; sourceTree = "<group>"; };
+		3CB54AB11ECC6D18000BD5B8 /* GroupListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupListTableViewCell.swift; sourceTree = "<group>"; };
+		3CB8BC781ED5A1F9003C3157 /* bkpEIAVC */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bkpEIAVC; sourceTree = "<group>"; };
+		3CC4298B1ED2216700FD6AB6 /* GroupDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDetailTableViewCell.swift; sourceTree = "<group>"; };
 		3CC56D9C1EC5C42400D98F88 /* AddItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemsViewController.swift; sourceTree = "<group>"; };
 		3CE204C11EC182D7008886CD /* bkp2loginvc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bkp2loginvc; sourceTree = "<group>"; };
 		3CE204C31EC18401008886CD /* LoginUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginUser.swift; sourceTree = "<group>"; };
@@ -94,6 +121,7 @@
 		3CE204CE1EC1E100008886CD /* NewSignUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSignUp.swift; sourceTree = "<group>"; };
 		3CE204D01EC1EE80008886CD /* UserDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		3CE6DA4E1EC9B800004EEFF3 /* underbuttonvc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = underbuttonvc; sourceTree = "<group>"; };
+		3CE6DA501ECA36AB004EEFF3 /* DateFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFilterViewController.swift; sourceTree = "<group>"; };
 		49F4B36B392754721F10DB0C /* Pods_taskEXpenseApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_taskEXpenseApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		53A2C9CB443A3924926303DF /* Pods-taskEXpenseApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskEXpenseApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-taskEXpenseApp/Pods-taskEXpenseApp.release.xcconfig"; sourceTree = "<group>"; };
 		D83E912FA2F4C8064E05E45D /* Pods-taskEXpenseApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskEXpenseApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-taskEXpenseApp/Pods-taskEXpenseApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -133,10 +161,14 @@
 				3C9B7D0F1EBB0139003E78EB /* ExpenseItemAddViewController.swift */,
 				3C62E1711EBC92C3007CFF21 /* LoginViewController.swift */,
 				3C62E1751EBC94CD007CFF21 /* SigningUpViewController.swift */,
-				3C92586F1EC0905A001C9856 /* AddingItemsViewController.swift */,
 				3CE204CA1EC19A46008886CD /* MenuViewController.swift */,
 				3CE204D01EC1EE80008886CD /* UserDetailViewController.swift */,
 				3CC56D9C1EC5C42400D98F88 /* AddItemsViewController.swift */,
+				3CE6DA501ECA36AB004EEFF3 /* DateFilterViewController.swift */,
+				3CB54AA91ECC53B2000BD5B8 /* CreateGroupViewController.swift */,
+				3CB54AAB1ECC5F5A000BD5B8 /* GroupListViewController.swift */,
+				3CB54AAD1ECC6479000BD5B8 /* CheckMemberViewController.swift */,
+				3C7A62341ECF239500549952 /* GroupDetailViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -149,6 +181,9 @@
 				3C7379CE1EB9FA6F00B6A553 /* NewExpenseTableViewCell.swift */,
 				3C9B7D111EBB242F003E78EB /* NewExpenseAddItemsTableViewCell.swift */,
 				3CAD13831EC972A90081EAE6 /* ExpenseDetailTableViewCell.swift */,
+				3CB54AB11ECC6D18000BD5B8 /* GroupListTableViewCell.swift */,
+				3C68793C1ECD545800026024 /* CreateGroupTableViewCell.swift */,
+				3CC4298B1ED2216700FD6AB6 /* GroupDetailTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -161,6 +196,8 @@
 				3CE204C31EC18401008886CD /* LoginUser.swift */,
 				3CE204CE1EC1E100008886CD /* NewSignUp.swift */,
 				3C6570D61EC2CB0F00EB9163 /* User.swift */,
+				3CB54AAF1ECC68C4000BD5B8 /* PrivateGroup.swift */,
+				3C633D9A1ECEA9A2004609F8 /* PrivateGroupTemp.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -202,6 +239,11 @@
 				3C9258711EC09347001C9856 /* readme */,
 				3CE204C11EC182D7008886CD /* bkp2loginvc */,
 				3CE6DA4E1EC9B800004EEFF3 /* underbuttonvc */,
+				3CB54AA71ECC23DE000BD5B8 /* bkp search bar */,
+				3C6A20741ED4241F00C4F0B9 /* bkpfor if */,
+				3C6A20761ED4566A00C4F0B9 /* bkp10 */,
+				3CB8BC781ED5A1F9003C3157 /* bkpEIAVC */,
+				3C6C0DB41ED69C6F003AC944 /* bkpExpenseItemAdd */,
 			);
 			path = taskEXpenseApp;
 			sourceTree = "<group>";
@@ -365,13 +407,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C6A20771ED4566A00C4F0B9 /* bkp10 in Resources */,
 				3C9258721EC09347001C9856 /* readme in Resources */,
 				3C1C67AF1EB1E6AE0053413A /* bkp1elvc in Resources */,
 				3C9C17CD1EA4C8A900FB7EA0 /* LaunchScreen.storyboard in Resources */,
 				3CE6DA4F1EC9B800004EEFF3 /* underbuttonvc in Resources */,
+				3C6C0DB51ED69C6F003AC944 /* bkpExpenseItemAdd in Resources */,
 				3C9C17CA1EA4C8A900FB7EA0 /* Assets.xcassets in Resources */,
 				3CE204C21EC182D7008886CD /* bkp2loginvc in Resources */,
+				3CB54AA81ECC23DE000BD5B8 /* bkp search bar in Resources */,
 				3C9C17C81EA4C8A900FB7EA0 /* Main.storyboard in Resources */,
+				3CB8BC791ED5A1F9003C3157 /* bkpEIAVC in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,26 +490,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CB54AAC1ECC5F5B000BD5B8 /* GroupListViewController.swift in Sources */,
+				3C7A62351ECF239500549952 /* GroupDetailViewController.swift in Sources */,
 				3CE204D11EC1EE80008886CD /* UserDetailViewController.swift in Sources */,
 				3C9B7D121EBB242F003E78EB /* NewExpenseAddItemsTableViewCell.swift in Sources */,
 				3CE204CB1EC19A46008886CD /* MenuViewController.swift in Sources */,
 				3C883FE31EAE2E3F00509B91 /* NewExpense.swift in Sources */,
 				3C9C17C51EA4C8A900FB7EA0 /* ExpenseListViewController.swift in Sources */,
+				3CC4298C1ED2216700FD6AB6 /* GroupDetailTableViewCell.swift in Sources */,
 				3C9457321EB1AF0F00CDDDF1 /* ExpenseDetailViewController.swift in Sources */,
 				3C1C67B51EB20D8A0053413A /* NewExpenseTempTableViewCell.swift in Sources */,
-				3C9258701EC0905A001C9856 /* AddingItemsViewController.swift in Sources */,
 				3C1C67B31EB1FD970053413A /* NewExpenseTemp.swift in Sources */,
+				3CB54AAA1ECC53B2000BD5B8 /* CreateGroupViewController.swift in Sources */,
+				3CB54AB21ECC6D18000BD5B8 /* GroupListTableViewCell.swift in Sources */,
 				3CE204C91EC190BA008886CD /* SWRevealViewController.m in Sources */,
 				3C7379CF1EB9FA6F00B6A553 /* NewExpenseTableViewCell.swift in Sources */,
+				3CB54AAE1ECC6479000BD5B8 /* CheckMemberViewController.swift in Sources */,
+				3C633D9B1ECEA9A2004609F8 /* PrivateGroupTemp.swift in Sources */,
+				3CB54AB01ECC68C4000BD5B8 /* PrivateGroup.swift in Sources */,
 				3CE204CF1EC1E100008886CD /* NewSignUp.swift in Sources */,
 				3C62E1761EBC94CD007CFF21 /* SigningUpViewController.swift in Sources */,
 				3CE204C41EC18401008886CD /* LoginUser.swift in Sources */,
 				3CAD13841EC972A90081EAE6 /* ExpenseDetailTableViewCell.swift in Sources */,
 				3C6570D71EC2CB0F00EB9163 /* User.swift in Sources */,
+				3C6A20751ED4242000C4F0B9 /* bkpfor if in Sources */,
 				3C9B7D101EBB0139003E78EB /* ExpenseItemAddViewController.swift in Sources */,
 				3C9C17C31EA4C8A900FB7EA0 /* AppDelegate.swift in Sources */,
+				3CE6DA511ECA36AB004EEFF3 /* DateFilterViewController.swift in Sources */,
 				3C62E1721EBC92C3007CFF21 /* LoginViewController.swift in Sources */,
 				3CC56D9D1EC5C42400D98F88 /* AddItemsViewController.swift in Sources */,
+				3C68793D1ECD545800026024 /* CreateGroupTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

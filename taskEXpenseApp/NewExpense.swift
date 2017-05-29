@@ -17,6 +17,7 @@ class NewExpense: Object{
     dynamic var totalMoneySpent: Double = Double(0.0)
     let addList = List<NewExpenseTemp>()
     dynamic var dateCreated = NSDate()
+    var assignedGroup = List<PrivateGroup>()////work here#####################
     
     
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!

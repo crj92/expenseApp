@@ -10,8 +10,8 @@ import UIKit
 
 class LoginViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var effectSmallWindow: UIVisualEffectView!
-    @IBOutlet weak var txtUserId: UITextView!
-    @IBOutlet weak var txtUserPwd: UITextView!
+    @IBOutlet weak var txtUserId: UITextField!
+    @IBOutlet weak var txtUserPwd: UITextField!
     @IBOutlet weak var btnSignIn: UIButton!
     @IBOutlet weak var btnSignUp: UIButton!
     
@@ -28,8 +28,8 @@ class LoginViewController: UIViewController, UITextViewDelegate {
         print("dir","\(NewExpense.DocumentsDirectory)")
 
         
-        self.hideKeyboardWhenTappedAround()
-        
+//        self.hideKeyboardWhenTappedAround()
+
         //push textfields' view up keybord comes
         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -38,7 +38,7 @@ class LoginViewController: UIViewController, UITextViewDelegate {
     //    for pushing views up when keyboard comes
     func keyboardWillShow(sender: NSNotification) {
         if let keyboardSize = (sender.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.effectSmallWindow.frame.origin.y == 175{
+            if self.effectSmallWindow.center.y == self.view.center.y{//.frame.origin.y == 175{
                 self.effectSmallWindow.frame.origin.y -= keyboardSize.height/2
             }
         }
@@ -47,18 +47,14 @@ class LoginViewController: UIViewController, UITextViewDelegate {
     //    for pushing views up when keyboard comes
     func keyboardWillHide(sender: NSNotification) {
         if let keyboardSize = (sender.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.effectSmallWindow.frame.origin.y != 175{//remove hardcoded
+//            if self.effectSmallWindow.frame.origin.y != 175{//remove hardcoded
+            if self.effectSmallWindow.center.y != self.view.center.y{//remove hardcoded
                 self.effectSmallWindow.frame.origin.y += keyboardSize.height/2
             }
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        txtUserId.text = "ram@"//"Enter Email"
-        txtUserId.textColor = UIColor.lightGray
-        
-        txtUserPwd.text = "123"//"Enter Password"
-        txtUserPwd.textColor = UIColor.lightGray
         
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         
@@ -73,6 +69,9 @@ class LoginViewController: UIViewController, UITextViewDelegate {
         super.viewWillDisappear(animated)
         //unhide for other
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    @IBAction func signUpButton(_ sender: Any) {
+        self.view.endEditing(true)
     }
     
     @IBAction func signInButton(_ sender: Any) {
@@ -89,7 +88,7 @@ class LoginViewController: UIViewController, UITextViewDelegate {
 //        UIView.animate(withDuration: 1, animations: {
 //            self.navigationController!.pushViewController(expenseListVC, animated: true)
 //        }, completion: nil)
-        userLoggedId = txtUserId.text
+        userLoggedId = txtUserId.text!
 
         
         if isUserAvailable(){
@@ -97,7 +96,7 @@ class LoginViewController: UIViewController, UITextViewDelegate {
             UIView.animate(withDuration: 1, animations: {
                 self.navigationController!.setViewControllers([swVC], animated: true)//(swVC, animated: true)
             }, completion: nil)
-            self.view.endEditing(true)
+            self.view.endEditing(true)//dismiss key board y? needed.. chk if it works on one click with self.hide key board
             
         }else if (count == 1){
             let alert = UIAlertController(title: "User not Found", message: "New User? Please Sign Up", preferredStyle: UIAlertControllerStyle.alert)
@@ -141,41 +140,7 @@ class LoginViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if ((txtUserId.textColor == UIColor.lightGray) && (textView == txtUserId)) {
-            txtUserId.text = nil
-            txtUserId.textColor = UIColor.black
-            
-        }
-        if (txtUserPwd.textColor == UIColor.lightGray && (textView == txtUserPwd)){
-            txtUserPwd.text = nil
-            txtUserPwd.textColor = UIColor.black
-            
-        }
-        
-    }
-    func textViewDidEndEditing(_ textView: UITextView) {
-        self.disablesAutomaticKeyboardDismissal = true
-        if txtUserId.text.isEmpty {
-            txtUserId.text = "Enter Email"
-            txtUserId.textColor = UIColor.lightGray
-        }
-        if txtUserPwd.text.isEmpty {
-            txtUserPwd.text = "Enter Password"
-            txtUserPwd.textColor = UIColor.lightGray
-        }
-    }
-     // here was getting expenselist vc, but commented to get menu cause we want slide view towork with menu button
-//    func getExpenseListViewController() -> ExpenseListViewController {
-//        if expenseListViewController == nil {
-//            let  mainStory = UIStoryboard(name: "Main", bundle: nil)
-//            let expenseListVC = mainStory.instantiateViewController(withIdentifier: "expenseListVC") as! ExpenseListViewController
-////            expenseListVC.navigationItem.backBarButtonItem = nil
-//            expenseListViewController = expenseListVC
-//            
-//        }
-//        return expenseListViewController!
-//    }
+
     
     //we get menuvc
     func getSWViewController() -> SWRevealViewController {
@@ -196,7 +161,9 @@ extension UIViewController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         
         //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
-        tap.cancelsTouchesInView = true//when this was false.. assoonas we neede to tap anywhere to dismiss key board .. it didnt happen whne we clicked sigin .. it only dismissed key board not sign in @ same time, but when its true its happening.
+           tap.cancelsTouchesInView = false//for directly touch buton and perform action, this shud be true, so if condition might make it happen
+        
+                //when this was false.. assoonas we neede to tap anywhere to dismiss key board .. it didnt happen whne we clicked sigin .. it only dismissed key board not sign in @ same time, but when its true its happening.
         
         view.addGestureRecognizer(tap)
     }
